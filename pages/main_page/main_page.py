@@ -1,4 +1,9 @@
+import os
+
 INVALID_INPUT = -1
+
+def clear_screen():
+        os.system("cls" if os.name == "nt" else "clear")
 
 def print_main_menu():
         print("""
@@ -33,5 +38,6 @@ def render():
                         exit("Have a nice day ^__^")
                 case INVALID_INPUT:
                         pass
+        clear_screen()
         
 
