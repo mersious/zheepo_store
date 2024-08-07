@@ -1,16 +1,15 @@
 import os
+import sys
 
-INVALID_INPUT = -1
+sys.path.insert(0, os.path.join(__file__, "../../"))
 
-def clear_screen():
-        os.system("cls" if os.name == "nt" else "clear")
+from management import management
+from utils import *
 
 def print_main_menu():
-        print("""
-1- Login
-2- Sign Up        
-e- Exit
-        """)
+        print("1- Management")
+        print("2- Customer")
+        print("e- Exit")
         options = ['1', '2', 'e']
         return options
 
@@ -31,9 +30,9 @@ def render():
         user_request = get_user_selection(options)
         match user_request:
                 case 1:
-                        print("Login ...")
+                        management.run()
                 case 2:
-                        print("Sign Up ...")
+                        print("Customer")
                 case 'e':
                         exit("Have a nice day ^__^")
                 case INVALID_INPUT:
