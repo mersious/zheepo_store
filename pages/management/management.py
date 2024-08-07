@@ -21,6 +21,10 @@ def get_user_selection(options:list):
         else:
                 input("Invalid input! press any key to try again..")
                 return INVALID_INPUT
+        
+def sign_up():
+       print("Sing UP")
+       username = input()
 
 def run():
     global INVALID_INPUT
@@ -34,7 +38,7 @@ def run():
             case 1:
                     print("logining...")
             case 2:
-                    print("sign uppping")
+                    sign_up()
             case 'e':
                     break
             case INVALID_INPUT:
