@@ -18,18 +18,21 @@ def check_username_validity(username):
     input("press any Key to try again..")
     return False
 
-def check_password_validity(password):
+def check_password_validity(password, mode = "sign up"):
     password_length = len(password)
     if password_length < 8:
         print("password length should be at least 8 characters.")
     elif password_length > 16:
         print("password length is too long!")
     elif password.isalnum():
-        pass_check = input("please re-enter your password: ")
-        if password == pass_check:
-            return True
+        if mode == "sign up":
+            pass_check = input("please re-enter your password: ")
+            if password == pass_check:
+                return True
+            else:
+                print("incorrect password!")
         else:
-            print("incorrect password!")
+            return True
     else:
         print("Invalid password.")
     input("press any Key to try again..")
@@ -42,9 +45,9 @@ def get_username():
             return username
         clear_screen()
             
-def get_password():
+def get_password(mode):
     while True:
         password = input("Password: ")
-        if check_password_validity(password):
+        if check_password_validity(password, mode= mode):
             return password
         clear_screen()
