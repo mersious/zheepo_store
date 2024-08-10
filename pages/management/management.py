@@ -8,7 +8,7 @@ from utils import *
 def print_management_menu():
     print("1- Login")
     print("2- Sign Up")
-    print("e- Exit")
+    print("e- Back")
     options = ['1', '2', 'e']
     return options
 
@@ -35,9 +35,9 @@ def run():
         options = print_management_menu()
         user_request = get_user_selection(options)
         match user_request:
-            case 1:
+            case "1":
                     print("logining...")
-            case 2:
+            case "2":
                     sign_up()
             case 'e':
                     break

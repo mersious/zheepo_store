@@ -15,10 +15,8 @@ def print_main_menu():
 
 def get_user_selection(options:list):
         user_input = input("Please Enter an Option: ")
-        if (user_input.isnumeric()) and (user_input in options):
-                return int(user_input)
-        elif user_input == 'e':
-                return 'e'
+        if (user_input.isalnum()) and (user_input in options):
+                return user_input
         else:
                 input("Invalid input! press any key to try again..")
                 return INVALID_INPUT
@@ -29,9 +27,9 @@ def render():
         options = print_main_menu()
         user_request = get_user_selection(options)
         match user_request:
-                case 1:
+                case "1":
                         management.run()
-                case 2:
+                case "2":
                         print("Customer")
                 case 'e':
                         exit("Have a nice day ^__^")
