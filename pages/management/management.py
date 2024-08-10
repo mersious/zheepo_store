@@ -5,6 +5,10 @@ sys.path.insert(0, os.path.join(__file__, "../"))
 
 from utils import *
 
+import csv
+
+MANAGERS_FILE_PATH = os.path.join(__file__,"..\\data\\managers.csv")
+
 def print_management_menu():
     print("1- Login")
     print("2- Sign Up")
@@ -13,18 +17,38 @@ def print_management_menu():
     return options
 
 def get_user_selection(options:list):
-        user_input = input("Please Enter an Option: ")
-        if (user_input.isnumeric()) and (user_input in options):
-                return int(user_input)
-        elif user_input == 'e':
-                return 'e'
-        else:
-                input("Invalid input! press any key to try again..")
-                return INVALID_INPUT
+    user_input = input("Please Enter an Option: ")
+    if (user_input.isalnum()) and (user_input in options):
+            return user_input
+    else:
+            input("Invalid input! press any key to try again..")
+            return INVALID_INPUT
+    
+def check_file_existance(file_path):
+    if os.path.isfile(file_path):
+        return True
+    else:
+        return False
         
+def add_data_to_file(data, file_path):
+    if(not(check_file_existance(file_path))):
+        with open(file_path, 'w', newline="") as managers_file:
+            csv_writer = csv.writer(managers_file)
+            csv_writer.writerow(data)
+    else:
+        with open(file_path, 'a', newline="") as managers_file:
+            csv_writer = csv.writer(managers_file)
+            csv_writer.writerow(data)         
+
+               
 def sign_up():
-       print("Sing UP")
-       username = input()
+    print("Sing UP")
+    username = get_username()
+    password = get_password()
+    if username and password:
+            add_data_to_file([username, password], MANAGERS_FILE_PATH)
+            print("Signed up successfully!")
+            input("Press any Key..")
 
 def run():
     global INVALID_INPUT
